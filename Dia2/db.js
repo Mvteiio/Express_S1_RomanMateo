@@ -30,7 +30,6 @@ class Database {
   async connect() {
     try {
       await this.client.connect();
-// Selecciona la base de datos a usar
       this.db = this.client.db(dbName);
       console.log('✅ Conectado a MongoDB');
     } catch (error) {

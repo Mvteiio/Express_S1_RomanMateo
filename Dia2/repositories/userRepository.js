@@ -26,10 +26,20 @@ class UserRepository {
     async findById(id) {
         const collection = await this.getCollection();
         const result = await collection.findOne({identificacion: Number(id)});
-        return result
+        return result;
     }
 
-    // ... otros métodos CRUD (findAll, update, delete)
+    async findAll() {
+        const collection = await this.getCollection();
+        const result = await collection.find({}).toArray();
+        return result;
+    }
+
+    async delete(id) {
+        const collection = await this.getCollection();
+        const result = await collection.deleteOne({ identificacion: Number(id) });
+        return result; 
+    }
 }
 
 module.exports = new UserRepository(); // Exportamos una única instancia del repositorio

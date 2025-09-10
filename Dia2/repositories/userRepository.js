@@ -20,12 +20,13 @@ class UserRepository {
     async create(user) {
         const collection = await this.getCollection();
         const result = await collection.insertOne(user);
-        return result.ops[0]; // Devuelve el documento insertado
+        return collection.findOne({ _id: result.insertedId });
     }
 
     async findById(id) {
         const collection = await this.getCollection();
-        // sigo aqui
+        const result = await collection.findOne({identificacion: Number(id)});
+        return result
     }
 
     // ... otros métodos CRUD (findAll, update, delete)

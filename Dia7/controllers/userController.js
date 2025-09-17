@@ -29,7 +29,7 @@ export default class UserController {
                 msg: "Usuario Registrado con exito",
                 data: newUser
             })
-        }
+        }   
         catch (err){
             res.status(500).json({error: err.message})
         }

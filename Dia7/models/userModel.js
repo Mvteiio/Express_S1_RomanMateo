@@ -24,9 +24,10 @@ export default class UserModel {
     }
 
     async updateUser(id, newData){
-        const collection = await this.connect
-        return await collection.updateOne({
-            _id: new ObjectId(id)
-        }), ({$set: newData})
+        const collection = await this.connect();
+        return await collection.updateOne(
+            { _id: new ObjectId(id) },  
+            { $set: newData }           
+        );
     }
 }

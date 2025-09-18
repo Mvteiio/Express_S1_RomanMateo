@@ -30,4 +30,9 @@ export default class UserModel {
             { $set: newData }           
         );
     }
+
+    // async deleteUser(id){
+    //     const collection = await this.connect();
+    //     return await
+    // }
 }

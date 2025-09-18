@@ -23,7 +23,8 @@ export default class UserController {
             const newUser = await this.userModel.createUser({
                 name,
                 email,
-                password: hashedPassword
+                password: hashedPassword,
+                role: "camper"
             });
             res.status(201).json({
                 msg: "Usuario Registrado con exito",
@@ -53,9 +54,15 @@ export default class UserController {
                 })
             }
 
-            const token=jwt.sign({id: existingUser._id}, process.env.JWT_SECRET, {
+            const payload = {
+                id: existingUser._id,
+                role: existingUser.role 
+            };
+
+            const token = jwt.sign(payload, process.env.JWT_SECRET, {
                 expiresIn: process.env.JWT_EXPIRES
-            })
+            });
+            
             res.status(202).json({
                 msg: "Login Exitoso",
                 token
